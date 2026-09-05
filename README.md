@@ -24,3 +24,28 @@ A highly available, cloud-native backend service for a fintech wallet applicatio
 ├── deployment.yaml       # Kubernetes deployment manifest (with liveness/readiness probes)
 ├── service.yaml          # Kubernetes LoadBalancer service manifest
 └── package.json          # Node.js dependencies
+
+
+#!/bin/bash
+
+# Exit immediately if a command exits with a non-zero status
+set -e
+
+echo "=== Step 1: Provisioning Infrastructure with Terraform ==="
+cd Terraform
+terraform init
+terraform apply -auto-approve
+
+echo "=== Step 2: Configuring kubectl for EKS ==="
+REGION="us-east-1"
+CLUSTER_NAME="fintech-cluster"
+aws eks update-kubeconfig --region $REGION --name$CLUSTER_NAME
+
+echo "=== Step 3: Deploying Application Manifests to EKS ==="
+cd ..
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+
+echo "=== Deployment Completed Successfully! ==="
+kubectl get pods
+kubectl get services
