@@ -1,0 +1,4 @@
+node_modules/
+Terraform/.terraform/
+Terraform/terraform.tfstate
+Terraform/terraform.tfstate.backup

@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fintech-wallet-deployment
+  labels:
+    app: fintech-wallet
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: fintech-wallet
+  template:
+    metadata:
+      labels:
+        app: fintech-wallet
+    spec:
+      containers:
+      - name: fintech-wallet
+        image: 097446187620.dkr.ecr.us-east-1.amazonaws.com/fintech-wallet-repo:latest
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 3000
+        readinessProbe:
+          httpGet:
+            path: /health
+            port: 3000
+          initialDelaySeconds: 3
+          periodSeconds: 5
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 3000
+          initialDelaySeconds: 5
+          periodSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fintech-wallet-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: fintech-wallet
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
