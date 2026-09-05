@@ -1,0 +1,12 @@
+{
+  "name": "fintech-wallet-ledger",
+  "version": "1.0.0",
+  "description": "A microservice for fintech wallet and transaction ledger",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
