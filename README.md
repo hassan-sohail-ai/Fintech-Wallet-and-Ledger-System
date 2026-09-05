@@ -26,64 +26,19 @@ A highly available, cloud-native backend service for a fintech wallet applicatio
 └── package.json          # Node.js dependencies
 
 
-Quick Start & Deployment
-1. Prerequisites Setup:
-Make sure you have AWS CLI, Terraform, Docker, and kubectl installed on your machine.
-
-2. Provision Infrastructure:
-Navigate to the Terraform directory, initialize, and apply the configuration:
-
-Bash 
-```
+# Step 1: Provision Infrastructure
 cd Terraform/
-terraform init
-terraform apply
-```
-
-3. Configure kubectl:
-Update your local kubeconfig to connect to your EKS cluster:
-
-Bash
-```
-aws eks update-kubeconfig --region <your-region> --name <cluster-name>
-```
-
-4. Deploy Application to EKS:
-Apply the Kubernetes deployment and service manifests:
-
-Bash
-```
-kubectl apply -f deployment.yaml
-kubectl apply -f service.yaml
-```
-
-Automated Deployment Script
-If you want to automate the deployment steps, you can run the following Bash script from your project root:
-
-Bash
-```
-
-#!/bin/bash
-
-# Exit immediately if a command exits with a non-zero status
-set -e
-
-echo "=== Step 1: Provisioning Infrastructure with Terraform ==="
-cd Terraform
 terraform init
 terraform apply -auto-approve
 
-echo "=== Step 2: Configuring kubectl for EKS ==="
-REGION="us-east-1"
-CLUSTER_NAME="fintech-cluster"
-aws eks update-kubeconfig --region $REGION --name$CLUSTER_NAME
+# Step 2: Configure kubectl
+aws eks update-kubeconfig --region us-east-1 --name fintech-cluster
 
-echo "=== Step 3: Deploying Application Manifests to EKS ==="
+# Step 3: Deploy Application to EKS
 cd ..
 kubectl apply -f deployment.yaml
 kubectl apply -f service.yaml
 
-echo "=== Deployment Completed Successfully! ==="
+# Step 4: Verify Deployment
 kubectl get pods
 kubectl get services
-```
