@@ -33,8 +33,7 @@ Make sure you have AWS CLI, Terraform, Docker, and kubectl installed on your mac
 2. Provision Infrastructure:
 Navigate to the Terraform directory, initialize, and apply the configuration:
 
-Bash
-```
+```bash
 cd Terraform/
 terraform init
 terraform apply
