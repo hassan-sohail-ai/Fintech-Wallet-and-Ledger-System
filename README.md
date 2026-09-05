@@ -33,7 +33,8 @@ Make sure you have AWS CLI, Terraform, Docker, and kubectl installed on your mac
 2. Provision Infrastructure:
 Navigate to the Terraform directory, initialize, and apply the configuration:
 
-```bash
+Bash 
+```
 cd Terraform/
 terraform init
 terraform apply
@@ -62,8 +63,6 @@ If you want to automate the deployment steps, you can run the following Bash scr
 Bash
 ```
 
-Automated Deployment Script
-If you want to automate the deployment steps, you can run the following Bash script from your project root:
 #!/bin/bash
 
 # Exit immediately if a command exits with a non-zero status
@@ -87,3 +86,4 @@ kubectl apply -f service.yaml
 echo "=== Deployment Completed Successfully! ==="
 kubectl get pods
 kubectl get services
+```
