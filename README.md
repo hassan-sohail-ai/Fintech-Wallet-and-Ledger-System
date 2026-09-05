@@ -26,6 +26,45 @@ A highly available, cloud-native backend service for a fintech wallet applicatio
 └── package.json          # Node.js dependencies
 
 
+Quick Start & Deployment
+1. Prerequisites Setup:
+Make sure you have AWS CLI, Terraform, Docker, and kubectl installed on your machine.
+
+2. Provision Infrastructure:
+Navigate to the Terraform directory, initialize, and apply the configuration:
+
+Bash
+```
+cd Terraform/
+terraform init
+terraform apply
+```
+
+3. Configure kubectl:
+Update your local kubeconfig to connect to your EKS cluster:
+
+Bash
+```
+aws eks update-kubeconfig --region <your-region> --name <cluster-name>
+```
+
+4. Deploy Application to EKS:
+Apply the Kubernetes deployment and service manifests:
+
+Bash
+```
+kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml
+```
+
+Automated Deployment Script
+If you want to automate the deployment steps, you can run the following Bash script from your project root:
+
+Bash
+```
+
+Automated Deployment Script
+If you want to automate the deployment steps, you can run the following Bash script from your project root:
 #!/bin/bash
 
 # Exit immediately if a command exits with a non-zero status
