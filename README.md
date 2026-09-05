@@ -4,7 +4,7 @@ A highly available, cloud-native backend service for a fintech wallet applicatio
 
 ---
 
-## 🚀 Architecture & Tech Stack
+## Architecture & Tech Stack
 
 - **Cloud & Infrastructure:** AWS EKS, VPC, AWS ECR, Terraform (IaC)
 - **Containerization & Orchestration:** Docker, Kubernetes (`Deployments`, `LoadBalancer`, `Probes`)
@@ -14,7 +14,7 @@ A highly available, cloud-native backend service for a fintech wallet applicatio
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```text
 ├── .github/workflows/    # Automated CI/CD pipeline configuration
@@ -24,4 +24,3 @@ A highly available, cloud-native backend service for a fintech wallet applicatio
 ├── deployment.yaml       # Kubernetes deployment manifest (with liveness/readiness probes)
 ├── service.yaml          # Kubernetes LoadBalancer service manifest
 └── package.json          # Node.js dependencies
-
